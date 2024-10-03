@@ -86,6 +86,10 @@ impl<T> UniqueArc<T> {
 }
 
 impl<T: ?Sized> UniqueArc<T> {
+    pub fn as_ptr(&self) -> *const T {
+        self.0.as_ptr()
+    }
+
     /// Convert to a shareable `Arc<T>` once we're done mutating it
     #[inline]
     pub fn shareable(self) -> Arc<T> {
