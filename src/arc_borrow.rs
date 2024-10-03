@@ -28,8 +28,8 @@ pub struct ArcBorrow<'a, T: ?Sized + 'a>(pub(crate) NonNull<T>, pub(crate) Phant
 unsafe impl<'a, T: ?Sized + Sync + Send> Send for ArcBorrow<'a, T> {}
 unsafe impl<'a, T: ?Sized + Sync + Send> Sync for ArcBorrow<'a, T> {}
 
-impl<'a, T> Copy for ArcBorrow<'a, T> {}
-impl<'a, T> Clone for ArcBorrow<'a, T> {
+impl<'a, T: ?Sized> Copy for ArcBorrow<'a, T> {}
+impl<'a, T: ?Sized> Clone for ArcBorrow<'a, T> {
     #[inline]
     fn clone(&self) -> Self {
         *self
